@@ -15,7 +15,7 @@ html {
 :root {
   font-size: 62.5%;
   --item-clamp: clamp(0px, 100%, 400px);
-  --background-gap: 5px;
+  --background-gap: 4px;
 }
 
 body {
@@ -35,10 +35,7 @@ body {
   --hover-color: #0084dd;
 
   color: var(--text-color);
-  background: repeating-linear-gradient(
-    var(--background-line1) 2px,
-    var(--background-line2) var(--background-gap)
-  );
+  background: var(--background-line2);
 }
 
 .dark-theme {
@@ -48,99 +45,27 @@ body {
   --hover-color: #ff6868;
 
   color: var(--text-color);
-  background: repeating-linear-gradient(
-    var(--background-line1) 2px,
-    var(--background-line2) var(--background-gap)
-  );
-  /* animation: shiftGradient 10s linear infinite; */
-}
-
-@keyframes shiftGradient {
-  0% {
-    background-position: 0px -150px;
-  }
-  100% {
-    background-position: 0px 100vh;
-  }
+  background: var(--background-line2);
 }
 
 h1,
 h2 {
   font-weight: 500;
+  color: var(--hover-color);
 }
 
 h3 {
   font-weight: 350;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+li {
+  list-style: none;
 }
 
 img,
 iframe {
   border-radius: 10px;
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
-}
-
-#sidebar {
-  position: fixed;
-  background: inherit;
-  width: 100%;
-  top: -400px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  padding: 20px;
-  /* height: 100dvh; */
-  justify-content: center;
-  text-align: center;
-  font-size: 3rem;
-  -webkit-transition: 0.7s ease-in-out;
-  -moz-transition: 0.7s ease-in-out;
-  -o-transition: 0.7s ease-in-out;
-  transition: 0.7s ease-in-out;
-  z-index: 5;
-  -webkit-box-shadow: 0px 9px 6px -1px rgba(0, 0, 0, 0.31);
-  -moz-box-shadow: 0px 9px 6px -1px rgba(0, 0, 0, 0.31);
-  box-shadow: 0px 9px 6px -1px rgba(0, 0, 0, 0.31);
-}
-
-#sidebar.active {
-  top: 50px;
-}
-
-#sidebar a {
-  position: relative;
-  transition: 0.3s ease-out;
-}
-
-#sidebar a:hover,
-#sidebar a:focus {
-  color: var(--hover-color);
-}
-
-#sidebar a::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 4px;
-  border-radius: 4px;
-  background-color: var(--text-color);
-  bottom: 0;
-  left: 0;
-  transform-origin: right;
-  transform: scaleX(0);
-  transition: transform 0.3s ease-out;
-  background: var(--hover-color);
-}
-
-#sidebar a:hover::before,
-#sidebar a:focus::before {
-  transform-origin: left;
-  transform: scaleX(1);
-  background: var(--hover-color);
 }
 
 header {
@@ -243,6 +168,68 @@ header {
   color: inherit;
 }
 
+#navbar {
+  z-index: 5;
+  position: fixed;
+  background: inherit;
+  width: 100%;
+  top: -600px;
+  padding: 20px;
+  text-align: center;
+  font-size: 3rem;
+
+  -webkit-box-shadow: 0px 9px 6px -1px rgba(0, 0, 0, 0.31);
+  -moz-box-shadow: 0px 9px 6px -1px rgba(0, 0, 0, 0.31);
+  box-shadow: 0px 9px 6px -1px rgba(0, 0, 0, 0.31);
+
+  -webkit-transition: 0.7s ease-in-out;
+  -moz-transition: 0.7s ease-in-out;
+  -o-transition: 0.7s ease-in-out;
+  transition: 0.7s ease-in-out;
+}
+
+#navbar li {
+  padding: 10px;
+}
+
+#navbar.active {
+  top: 50px;
+}
+
+#navbar a {
+  text-decoration: none;
+  color: inherit;
+  position: relative;
+  transition: 0.3s ease-out;
+}
+
+#navbar a:hover,
+#navbar a:focus {
+  color: var(--hover-color);
+}
+
+#navbar a::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  border-radius: 4px;
+  background-color: var(--text-color);
+  bottom: 0;
+  left: 0;
+  transform-origin: right;
+  transform: scaleX(0);
+  transition: transform 0.3s ease-out;
+  background: var(--hover-color);
+}
+
+#navbar a:hover::before,
+#navbar a:focus::before {
+  transform-origin: left;
+  transform: scaleX(1);
+  background: var(--hover-color);
+}
+
 main {
   margin-top: 50px;
 }
@@ -272,8 +259,8 @@ main section h2 {
 
 #hero img {
   margin: 10px 0;
-  height: 80%;
-  width: clamp(0px, 100%, 350px);
+  height: 70%;
+  /* width: clamp(0px, 100%, 350px); */
 }
 
 .button-container {
@@ -340,6 +327,7 @@ main section h2 {
 
   box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 
+  text-decoration: none;
   background-color: transparent;
   width: 100%;
   padding: var(--border-size);
@@ -401,6 +389,64 @@ main section h2 {
   width: clamp(0px, 100%, 1000px);
 }
 
+#features {
+  /* display: grid; */
+  /* gap: 20px !important; */
+  text-align: start;
+}
+
+.feature {
+  display: grid;
+  grid-template-columns: 25px 1fr;
+  grid-template-rows: fit-content 1fr;
+  gap: 10px 10px;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "SVG Title"
+    "Text Text"
+    "IMG IMG";
+  margin-bottom: 20px;
+}
+
+.feature h3 {
+  grid-area: Title;
+  border-bottom: 1px solid var(--text-color);
+}
+
+.feature p {
+  grid-area: Text;
+}
+
+.feature i {
+  grid-area: SVG;
+  align-self: center;
+  text-align: center;
+}
+
+.feature img {
+  grid-area: IMG;
+  width: clamp(0px, 100%, 1000px);
+  border: 1px solid var(--text-color);
+  margin: 20px auto;
+}
+
+.feature a {
+  color: inherit;
+}
+
+.feature a:hover {
+  color: var(--hover-color);
+}
+
+.feature code {
+  padding: 0.05em 0.2em;
+  font-size: 90%;
+  background: var(--text-color);
+  color: var(--background-line2);
+  opacity: 0.5;
+  border-radius: 6px;
+}
+
 #videos div {
   display: flex;
   flex-wrap: wrap;
@@ -434,6 +480,7 @@ main section h2 {
 
 .team h2 {
   margin: 0;
+  color: var(--text-color);
 }
 
 .teammate {
@@ -448,6 +495,7 @@ main section h2 {
 
 footer {
   padding: 20px;
+  margin-bottom: 20px;
 }
 
 footer h2 {
@@ -466,12 +514,23 @@ footer button {
   color: var(--text-color);
   cursor: pointer;
   font-size: 1.6rem;
+  position: relative;
 }
 
 #copy-message {
-  display: none;
-  color: green;
-  text-shadow: 1px 1px black;
+  position: absolute;
+  top: -15px;
+  right: 0;
+  left: 0;
+  color: var(--hover-color);
+  opacity: 0;
+  transition: opacity 2s, transform 2s, scale 2s;
+}
+
+#copy-message.show-message {
+  opacity: 1;
+  scale: 1.2;
+  transform: translate(0, -15px);
 }
 
 @media (min-width: 700px) {
@@ -490,6 +549,10 @@ footer button {
 
   .team h2 {
     font-size: 3.2rem;
+  }
+
+  .feature {
+    grid-template-columns: 40px 1fr;
   }
 
   footer button {

@@ -12,9 +12,10 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
+    <script src="index.js" defer></script>
   </head>
 
-  <body class="dark-theme">
+  <body class="dark-theme" onclick="handleMenu(event)">
     <header>
       <button id="menu-button" onclick="toggleActive(this)">
         <span></span>
@@ -29,15 +30,38 @@
       </button>
     </header>
 
-    <aside id="sidebar">
-      <div><a href="#hero" class="sidebar-link">Home</a></div>
-      <div><a href="#about" class="sidebar-link">About</a></div>
-      <div><a href="#how-it-works" class="sidebar-link">How it Works</a></div>
-      <div><a href="#videos" class="sidebar-link">Videos</a></div>
-      <div><a href="#gallery" class="sidebar-link">Gallery</a></div>
-      <div><a href="#meet-the-team" class="sidebar-link">Meet the Team</a></div>
-      <div><a href="#contact" class="sidebar-link">Contact</a></div>
-    </aside>
+    <nav id="navbar">
+      <ul>
+        <li><a href="#hero" onclick="handleNavigationClick(event)">Home</a></li>
+        <li>
+          <a href="#about" onclick="handleNavigationClick(event)">About</a>
+        </li>
+        <li>
+          <a href="#how-it-works" onclick="handleNavigationClick(event)"
+            >How it Works</a
+          >
+        </li>
+        <li>
+          <a href="#features" onclick="handleNavigationClick(event)"
+            >Features</a
+          >
+        </li>
+        <li>
+          <a href="#videos" onclick="handleNavigationClick(event)">Videos</a>
+        </li>
+        <li>
+          <a href="#gallery" onclick="handleNavigationClick(event)">Gallery</a>
+        </li>
+        <li>
+          <a href="#meet-the-team" onclick="handleNavigationClick(event)"
+            >Meet the Team</a
+          >
+        </li>
+        <li>
+          <a href="#contact" onclick="handleNavigationClick(event)">Contact</a>
+        </li>
+      </ul>
+    </nav>
 
     <main>
       <section id="hero">
@@ -101,6 +125,80 @@
           card's capabilities
         </p>
         <img src="./images/structure.png" alt="" loading="lazy" />
+      </section>
+
+      <section id="features">
+        <h2>Features</h2>
+
+        <div class="feature">
+          <h3>Controls</h3>
+          <p>
+            A virtual joystick is provided to remotely control the robot. It
+            sends a vector of movement to the robot by publishing it to the
+            <code>/cmd_vel</code> (command velocity) topic. There are 8 possible
+            directions, including moving diagonally. RoboVoyager is a
+            <a href="https://medium.com/manual-robotics/drives-76c2b2dac97c"
+              >differential</a
+            >
+            robot, so one wheel's speed is "differentiated" from the other and
+            that's how it can rotate around and move in a curvy line
+          </p>
+          <i class="fa-solid fa-gamepad"></i>
+          <img src="images/robot/differential_drive.png" alt="" />
+        </div>
+
+        <div class="feature">
+          <h3>Video Streaming</h3>
+          <p>
+            While a user is controling a robot, the ability to see where it is
+            going is essential. Video streaming is offered at a low resolution
+            for faster viewing speed. Data is sent/downloaded only after a user
+            turns on
+            <code>/video_streaming</code> and subscribes to the topic
+          </p>
+          <i class="fa-solid fa-video"></i>
+        </div>
+
+        <div class="feature">
+          <h3>Sensors</h3>
+          <p>
+            Monitor sensor data of the robot. The most useful sensors are
+            battery level, GPS, and network traffic for tracking the quality of
+            the video
+          </p>
+          <!-- <i class="fa-regular fa-rectangle-list"></i> -->
+          <i class="fa-solid fa-satellite-dish"></i>
+        </div>
+
+        <div class="feature">
+          <h3>Data Saving</h3>
+          <p>
+            Saving data is easy at a press of a button. Possible to pause during
+            recording, take multiple recordings. Data saver node collects
+            information from Lidar, GPS, and Zed2 camera (but the camera has
+            many more sensors inside it). Be cautious of prolonged use
+          </p>
+          <i class="fa-regular fa-pen-to-square"></i>
+        </div>
+
+        <div class="feature">
+          <h3>Object Detection</h3>
+          <p>
+            While exploring the environemnt, highlighting points of interest is
+            beneficial
+          </p>
+          <i class="fa-solid fa-vector-square"></i>
+        </div>
+
+        <div class="feature">
+          <h3>Segmentation</h3>
+          <p>
+            Along with Object Detection feature, masks of recognized object can
+            be highlighted as a secondary option
+          </p>
+          <!-- <i class="fa-solid fa-person"></i> -->
+          <i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i>
+        </div>
       </section>
 
       <section id="videos">
@@ -189,16 +287,12 @@
     <footer>
       <section id="contact">
         <h2>Contact</h2>
-        <div>
+        <button onclick="copyToClipboard()">
           <i class="fas fa-envelope" onclick="copyToClipboard()"></i>
-          <button onclick="copyToClipboard()">
-            emir.masinovic.bh@gmail.com
-          </button>
-          <p id="copy-message">Copied!</p>
-        </div>
+          emir.masinovic.bh@gmail.com
+          <div id="copy-message">Copied!</div>
+        </button>
       </section>
     </footer>
-
-    <script src="index.js"></script>
   </body>
 </html>
